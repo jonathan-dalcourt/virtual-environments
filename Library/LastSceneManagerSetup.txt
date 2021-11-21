@@ -1,0 +1,5 @@
+sceneSetups:
+- path: Assets/Ramenshop -  Low Poly (HA)/DEMO SCENE RAMENSHOP.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
