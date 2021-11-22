@@ -1,2 +1,0 @@
-# Starting compiling OEBIF.dll
-/Applications/Unity/Unity.app/Contents/Tools/RoslynScripts/unity_csc.sh /noconfig @Temp/UnityTempFile-0620b40062eea49ad965c542987535aa
