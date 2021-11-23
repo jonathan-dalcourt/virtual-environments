@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum IngredientStatus { Played, Mixed, PlayedAndMixed }
+public enum IngredientStatus { Uninitialized, AudioPlayed, Mixed, PlayedAndMixed }
+public enum RecipeStage { Intro, Egg, FishCake, Menma, Nori }
 public class PickUp : MonoBehaviour
 {
     private string nori = "Nori";
@@ -13,11 +14,7 @@ public class PickUp : MonoBehaviour
     private string ramenBowl = "Ramen Bowl";
     private string ramenComponent = "Ramen Component";
     private string intro = "Intro";
-    private int stageIntro = 0;
-    private int stageEgg = 1;
-    private int stageFishCake = 2;
-    private int stageMenma = 3;
-    private int stageNori = 4;
+
 
     public Transform dest;
     public AudioSource eggAudio;
@@ -25,28 +22,25 @@ public class PickUp : MonoBehaviour
     public AudioSource fishCakeAudio;
     public AudioSource noriAudio;
     public AudioSource introAudio;
-    public IngredientStatus?[] recipeStage;
-
-    void Start() {
-        recipeStage = new IngredientStatus?[5];
-    }
+    public List<IngredientStatus> recipeStage;
 
     void OnTriggerEnter(Collider other) {
-        if (recipeStage[stageIntro] != IngredientStatus.PlayedAndMixed) {
-            playAudio(intro);
+        int introIndex = (int) RecipeStage.Intro;
+        if (recipeStage.Count == (int) introIndex) {
+            PlayAudio(intro);
         }
     }
 
     void OnMouseDown()
     {
-        int stage = getStageFromName(gameObject.name);
-        if (stage != -1 && canInteract(stage)) {
-            playAudio(gameObject.name);
-            grabObject();
-        }
+        RecipeStage stage = GetStageFromName(gameObject.name);
+        //if (CanInteract(stage)) {
+            PlayAudio(gameObject.name);
+            GrabObject();
+        //}
     }
 
-    void grabObject() {
+    void GrabObject() {
         GetComponent<Rigidbody>().useGravity = false;
         GetComponent<Rigidbody>().isKinematic = true;
         this.transform.position = dest.position;
@@ -63,7 +57,7 @@ public class PickUp : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         // if collided with something other than ramen, snap back to original position
-        if (!isRamen(col.gameObject.name)) {
+        if (!IsRamen(col.gameObject.name)) {
             Vector3 newPosition;
             if (gameObject.name == egg) {
                 newPosition = new Vector3(10.542f, 3.109f, 0.853f);
@@ -82,91 +76,92 @@ public class PickUp : MonoBehaviour
             // if we're holding the object, don't do anything
             if (this.transform.parent != null) return;
 
-            int stage = getStageFromName(gameObject.name);
-            updateStatus(stage, IngredientStatus.Mixed);
+            RecipeStage stage = GetStageFromName(gameObject.name);
+            UpdateStatus(stage, IngredientStatus.Mixed);
             Destroy(gameObject);
         }
     }
 
-    int getStageFromName(string name) {
-        if (name == egg) return stageEgg;
-        else if (name == fishCake) return stageFishCake;
-        else if (name == menma) return stageMenma;
-        else if (name == nori) return stageNori;
-        else if (name == intro) return stageIntro;
-        else return -1;
+    RecipeStage GetStageFromName(string name) {
+        if (name == egg) return RecipeStage.Egg;
+        else if (name == fishCake) return RecipeStage.FishCake;
+        else if (name == menma) return RecipeStage.Menma;
+        else if (name == nori) return RecipeStage.Nori;
+        else if (name == intro) return RecipeStage.Intro;
+        else return RecipeStage.Intro; // TODO fix
     }
 
-    bool isRamen(string name) {
+    bool IsRamen(string name) {
         return (name == ramen || name == ramenBowl || name == ramenComponent);
     }
 
-    void playAudio(string name) {
-        int stage = getStageFromName(name);
+    void PlayAudio(string name) {
+        RecipeStage stage = GetStageFromName(name);
 
         // if (!canInteract(stage)) return;
 
         AudioSource audio;
 
-        if (stage == stageIntro) {
+        if (stage == RecipeStage.Intro) {
             audio = introAudio;
-        } else if (stage == stageEgg) {
+        } else if (stage == RecipeStage.Egg) {
             audio = eggAudio;
-        } else if (stage == stageFishCake) {
+        } else if (stage == RecipeStage.FishCake) {
             audio = fishCakeAudio;
-        } else if (stage == stageMenma) {
+        } else if (stage == RecipeStage.Menma) {
             audio = menmaAudio;
-        } else if (stage == stageNori) {
+        } else if (stage == RecipeStage.Nori) {
             audio = noriAudio;
         } else return;
 
         // TODO if audio ! playing?
         audio.Play();
-        StartCoroutine(waitForAudioEnd(audio.clip.length));
-        if (stage == stageIntro) {
-            updateStatus(stage, IngredientStatus.PlayedAndMixed);
+        StartCoroutine(WaitForAudioEnd(stage, audio.clip.length));
+    }
+
+    // void audioHelper(RecipeStage stage, AudioSource audio) {
+    //     audio.Play();
+    //     StartCoroutine(WaitForAudioEnd(audio.clip.length));
+    // }
+
+    IEnumerator WaitForAudioEnd(RecipeStage stage, float audioLength) {
+        print("beginning");
+        yield return new WaitForSeconds(audioLength);
+        print("ended");
+        if (stage == RecipeStage.Intro) {
+            UpdateStatus(stage, IngredientStatus.PlayedAndMixed);
         } else {
-            updateStatus(stage, IngredientStatus.Played);
+            UpdateStatus(stage, IngredientStatus.AudioPlayed);
         }
     }
 
-    bool canInteract(int stage) {
-        if (stage == -1) return false;
-            if (recipeStage[stage - 1] != IngredientStatus.PlayedAndMixed) {
-                int x = 0;
-                int y = x / 2;
-                return false;
-            }
-            if (stage != stageNori && recipeStage[stage + 1] != null) {
-                int x = 0;
-                int y = x / 2;
-                return false;
-            }
-
+    bool CanInteract(RecipeStage stage) {
+        int stageIndex = (int) stage;
+        if (recipeStage.Count < stageIndex) return false;
+        if (recipeStage[stageIndex] == IngredientStatus.PlayedAndMixed) return false;
+            // if (recipeStage[stageIndex] != IngredientStatus.PlayedAndMixed) {
+            //     return false;
+            // }
+            // if (stage != stageNori && recipeStage[stage + 1] != null) {
+            //     return false;
+            // }
         return true;
     }
 
-    IEnumerator waitForAudioEnd(float audioLength) {
-        yield return new WaitForSeconds(audioLength);
-    }
-    void updateStatus(int stage, IngredientStatus newStatus) {
-        if (stage == -1) return;
-
-        IngredientStatus? oldStatus = recipeStage[stage];
-        
+    void UpdateStatus(RecipeStage stage, IngredientStatus newStatus) {
+        int stageIndex = (int) stage;
         // if ingredient has not been added or fully played
-        if (oldStatus == null) {
-            recipeStage[stage] = newStatus;
-            return;
+        if (recipeStage.Count <= stageIndex) {
+            recipeStage.Add(newStatus);
+        } else {
+            IngredientStatus oldStatus = recipeStage[stageIndex];
+            if (newStatus == IngredientStatus.AudioPlayed) {
+                if (oldStatus != IngredientStatus.Mixed) return; // played, but not mixed
+            } else if (newStatus == IngredientStatus.Mixed) {
+                if (oldStatus != IngredientStatus.AudioPlayed) return; // mixed, but not played
+            }
+            recipeStage[stageIndex] = IngredientStatus.PlayedAndMixed;
         }
-
-        if (newStatus == IngredientStatus.Played) {
-            if (oldStatus != IngredientStatus.Mixed) return; // played, but not mixed
-        } else if (newStatus == IngredientStatus.Mixed) {
-            if (oldStatus != IngredientStatus.Played) return; // mixed, but not played
-        }
-
-        recipeStage[stage] = IngredientStatus.PlayedAndMixed;
     }
 
 }

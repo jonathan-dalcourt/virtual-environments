@@ -43,10 +43,16 @@
      <Compile Include="Assets\Mini First Person Controller\Scripts\Components\Jump.cs" />
      <Compile Include="Assets\Mini First Person Controller\Scripts\Components\FirstPersonAudio.cs" />
      <Compile Include="Assets\Mini First Person Controller\Scripts\FirstPersonLook.cs" />
+     <Compile Include="Assets\PlayAudio.cs" />
      <Compile Include="Assets\cartoon chef\scripts\Example_main_control.cs" />
      <Compile Include="Assets\Mini First Person Controller\Scripts\Components\Crouch.cs" />
      <Compile Include="Assets\Mini First Person Controller\Scripts\Components\GroundCheck.cs" />
-     <Compile Include="Assets\PlayAudio.cs" />
+     <Compile Include="Assets\NoriScript.cs" />
+     <Compile Include="Assets\EggAudio.cs" />
+     <Compile Include="Assets\IntroAudio.cs" />
+     <Compile Include="Assets\FishCakeAudio.cs" />
+     <Compile Include="Assets\MenmaAudio.cs" />
+     <Compile Include="Assets\NoriAudio.cs" />
      <None Include="Assets\QuickOutline\Resources\Shaders\OutlineMask.shader" />
      <None Include="Assets\cartoon chef\shader\2-sided Alpha Cutout.shader" />
      <None Include="Assets\QuickOutline\Readme.txt" />
