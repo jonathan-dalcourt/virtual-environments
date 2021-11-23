@@ -999,7 +999,7 @@ GameObject:
   - component: {fileID: 288514109}
   - component: {fileID: 288514108}
   - component: {fileID: 288514107}
-  - component: {fileID: 288514106}
+  - component: {fileID: 288514111}
   m_Layer: 0
   m_Name: Intro Trigger
   m_TagString: Untagged
@@ -1007,24 +1007,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &288514106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 288514105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae83e910897f64377b5ee2c7dd6ea449, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dest: {fileID: 1217702904}
-  eggAudio: {fileID: 178425893}
-  menmaAudio: {fileID: 221345543}
-  fishCakeAudio: {fileID: 80634318}
-  noriAudio: {fileID: 1811960931}
-  introAudio: {fileID: 401418258}
 --- !u!65 &288514107
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1101,6 +1083,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 97
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &288514111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288514105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fd7b64114d23439d919a34ed669978b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageCompleted: 0
+  audioSource: {fileID: 401418258}
 --- !u!1001 &291140248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1557,15 +1553,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 376248649}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae83e910897f64377b5ee2c7dd6ea449, type: 3}
+  m_Script: {fileID: 11500000, guid: 636c411a7a9cc4a9b8562cfc421e7095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dest: {fileID: 1217702904}
-  eggAudio: {fileID: 178425893}
-  menmaAudio: {fileID: 221345543}
-  fishCakeAudio: {fileID: 80634318}
-  noriAudio: {fileID: 1811960931}
-  introAudio: {fileID: 401418258}
+  audioSource: {fileID: 80634318}
+  stageCompleted: 0
 --- !u!54 &376248654
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2969,24 +2962,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 112290, guid: 418884d5c8f31354a8ca861583948ac5, type: 3}
   m_PrefabInstance: {fileID: 962525613}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &733717011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 733717010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae83e910897f64377b5ee2c7dd6ea449, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dest: {fileID: 1217702904}
-  eggAudio: {fileID: 178425893}
-  menmaAudio: {fileID: 221345543}
-  fishCakeAudio: {fileID: 80634318}
-  noriAudio: {fileID: 1811960931}
-  introAudio: {fileID: 401418258}
 --- !u!54 &733717012
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3016,6 +2991,21 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.023232974
   m_Center: {x: 0, y: 9.313226e-10, z: 0}
+--- !u!114 &733717017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733717010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2206bfdba9174bf7bf054a8fc3ddf02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dest: {fileID: 1217702904}
+  audioSource: {fileID: 178425893}
+  stageCompleted: 0
 --- !u!1001 &779852239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3327,15 +3317,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 829495813}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae83e910897f64377b5ee2c7dd6ea449, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e16e4d42aea74459842f4cab8217bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dest: {fileID: 1217702904}
-  eggAudio: {fileID: 178425893}
-  menmaAudio: {fileID: 221345543}
-  fishCakeAudio: {fileID: 80634318}
-  noriAudio: {fileID: 1811960931}
-  introAudio: {fileID: 401418258}
+  audioSource: {fileID: 1811960931}
+  stageCompleted: 0
 --- !u!65 &829495818
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7057,6 +7044,7 @@ MonoBehaviour:
   fishCakeAudio: {fileID: 0}
   noriAudio: {fileID: 0}
   introAudio: {fileID: 0}
+  recipeStage: 
 --- !u!1001 &1882086553
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7323,15 +7311,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1980710830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae83e910897f64377b5ee2c7dd6ea449, type: 3}
+  m_Script: {fileID: 11500000, guid: c26c2e447ac8b422e8a0185b2b53d5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dest: {fileID: 1217702904}
-  eggAudio: {fileID: 178425893}
-  menmaAudio: {fileID: 221345543}
-  fishCakeAudio: {fileID: 80634318}
-  noriAudio: {fileID: 1811960931}
-  introAudio: {fileID: 401418258}
+  audioSource: {fileID: 221345543}
+  stageCompleted: 0
 --- !u!65 &1980710835
 BoxCollider:
   m_ObjectHideFlags: 0
