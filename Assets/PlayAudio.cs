@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayAudio : MonoBehaviour
 {
     public AudioSource introAudio;
-    private bool played;
+    public bool played;
 
 
     void OnTriggerEnter(Collider other) {
