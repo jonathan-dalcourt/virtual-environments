@@ -1016,11 +1016,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 288514105}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6aad1aecd34c4cc28a693c31e03e529, type: 3}
+  m_Script: {fileID: 11500000, guid: ae83e910897f64377b5ee2c7dd6ea449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dest: {fileID: 1217702904}
+  eggAudio: {fileID: 178425893}
+  menmaAudio: {fileID: 221345543}
+  fishCakeAudio: {fileID: 80634318}
+  noriAudio: {fileID: 1811960931}
   introAudio: {fileID: 401418258}
-  played: 0
 --- !u!65 &288514107
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1561,6 +1565,7 @@ MonoBehaviour:
   menmaAudio: {fileID: 221345543}
   fishCakeAudio: {fileID: 80634318}
   noriAudio: {fileID: 1811960931}
+  introAudio: {fileID: 401418258}
 --- !u!54 &376248654
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2981,6 +2986,7 @@ MonoBehaviour:
   menmaAudio: {fileID: 221345543}
   fishCakeAudio: {fileID: 80634318}
   noriAudio: {fileID: 1811960931}
+  introAudio: {fileID: 401418258}
 --- !u!54 &733717012
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3329,6 +3335,7 @@ MonoBehaviour:
   menmaAudio: {fileID: 221345543}
   fishCakeAudio: {fileID: 80634318}
   noriAudio: {fileID: 1811960931}
+  introAudio: {fileID: 401418258}
 --- !u!65 &829495818
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7049,6 +7056,7 @@ MonoBehaviour:
   menmaAudio: {fileID: 0}
   fishCakeAudio: {fileID: 0}
   noriAudio: {fileID: 0}
+  introAudio: {fileID: 0}
 --- !u!1001 &1882086553
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7323,6 +7331,7 @@ MonoBehaviour:
   menmaAudio: {fileID: 221345543}
   fishCakeAudio: {fileID: 80634318}
   noriAudio: {fileID: 1811960931}
+  introAudio: {fileID: 401418258}
 --- !u!65 &1980710835
 BoxCollider:
   m_ObjectHideFlags: 0
