@@ -9,10 +9,11 @@ public class IntroAudio : MonoBehaviour
     private string ramenComponent = "Ramen Component";
     public bool stageCompleted;
     public AudioSource audioSource;
+
     void OnTriggerEnter(Collider other) {
         if (!audioSource.isPlaying && !stageCompleted) {
-            audioSource.Play();
-            StartCoroutine(WaitForAudioEnd(audioSource.clip.length));
+            //audioSource.Play();
+            //StartCoroutine(WaitForAudioEnd(audioSource.clip.length));
         }
     }
 
